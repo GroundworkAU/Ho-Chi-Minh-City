@@ -142,6 +142,29 @@ td{padding:.7rem 1rem .7rem 0; border-bottom:1px solid var(--line); vertical-ali
 td.route{font-weight:600; color:var(--green); white-space:nowrap}
 .tablescroll{overflow-x:auto}
 
+/* the flights table stacks into rows on a phone */
+@media (max-width:720px){
+  .tablescroll{overflow-x:visible}
+  table, table tbody{display:block; width:100%}
+  table thead{display:none}
+  table tr{display:flex; flex-direction:column; padding:1rem 0; border-bottom:1px solid var(--line)}
+  table tr:first-child{padding-top:0}
+  table td{display:flex; gap:.75rem; padding:.15rem 0; border:0}
+  table td::before{
+    content:attr(data-label); flex:0 0 4.5rem;
+    font-size:.78rem; letter-spacing:.04em; color:var(--muted); padding-top:.15em;
+  }
+  table td.route{order:-1; font-size:1.05rem; margin-bottom:.35rem}
+  table td.route::before{display:none}
+}
+
+/* roomier tap targets on touch screens */
+@media (hover:none){
+  .bar nav a{padding-block:.35rem}
+  .salon .addr a, .salon .tel a, .salon .booked a,
+  .salon h3 .handle, .card h3 a{padding-block:.3rem}
+}
+
 /* bridal appointments */
 .grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:2.75rem 2rem}
 @media (max-width:820px){.grid{grid-template-columns:1fr; gap:3rem}}
@@ -210,10 +233,10 @@ td.route{font-weight:600; color:var(--green); white-space:nowrap}
           <tr><th>Date</th><th>Depart</th><th>Route</th><th>Flight</th><th>Detail</th></tr>
         </thead>
         <tbody>
-          <tr><td>Mon 5 Oct</td><td>9:45 pm</td><td class="route">ADL to PER</td><td>VA 723 Virgin Australia</td><td>Terminal 1, arrives 10:50 pm</td></tr>
-          <tr><td>Tue 6 Oct</td><td>12:25 am</td><td class="route">PER to SGN</td><td>VN 790 Vietnam Airlines</td><td>Terminal 1, arrives 5:55 am into Terminal 2</td></tr>
-          <tr><td>Sun 11 Oct</td><td>10:40 pm</td><td class="route">SGN to SYD</td><td>JQ 62 Jetstar</td><td>Arrives 11:10 am Monday</td></tr>
-          <tr><td>Mon 12 Oct</td><td>2:45 pm</td><td class="route">SYD to ADL</td><td>QF 739 Qantas</td><td>Terminal 3, arrives 4:25 pm into Terminal 1</td></tr>
+          <tr><td data-label="Date">Mon 5 Oct</td><td data-label="Depart">9:45 pm</td><td class="route" data-label="Route">ADL to PER</td><td data-label="Flight">VA 723 Virgin Australia</td><td data-label="Detail">Terminal 1, arrives 10:50 pm</td></tr>
+          <tr><td data-label="Date">Tue 6 Oct</td><td data-label="Depart">12:25 am</td><td class="route" data-label="Route">PER to SGN</td><td data-label="Flight">VN 790 Vietnam Airlines</td><td data-label="Detail">Terminal 1, arrives 5:55 am into Terminal 2</td></tr>
+          <tr><td data-label="Date">Sun 11 Oct</td><td data-label="Depart">10:40 pm</td><td class="route" data-label="Route">SGN to SYD</td><td data-label="Flight">JQ 62 Jetstar</td><td data-label="Detail">Arrives 11:10 am Monday</td></tr>
+          <tr><td data-label="Date">Mon 12 Oct</td><td data-label="Depart">2:45 pm</td><td class="route" data-label="Route">SYD to ADL</td><td data-label="Flight">QF 739 Qantas</td><td data-label="Detail">Terminal 3, arrives 4:25 pm into Terminal 1</td></tr>
         </tbody>
       </table>
     </div>
